@@ -1,4 +1,8 @@
 // See README.md for license details.
+val ivyLocal = Resolver.file("local", file("~" +
+   "/.ivy2/local"))(Resolver.ivyStylePatterns)
+
+externalResolvers += ivyLocal
 
 def scalacOptionsVersion(scalaVersion: String): Seq[String] = {
   Seq() ++ {
@@ -26,7 +30,7 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
   }
 }
 
-name := "chisel-module-template"
+name := "simple-chisel-demo"
 
 version := "3.3.0"
 
@@ -49,7 +53,7 @@ val defaultVersions = Seq(
 
 libraryDependencies ++= defaultVersions.map { case (dep, ver) =>
   "edu.berkeley.cs" %% dep % sys.props.getOrElse(dep + "Version", ver) }
-
+libraryDependencies ++= "edu.umich.engin.eecs" %% "chisel3" % "0.1-SNAPSHOT",
 scalacOptions ++= scalacOptionsVersion(scalaVersion.value)
 
 javacOptions ++= javacOptionsVersion(scalaVersion.value)
