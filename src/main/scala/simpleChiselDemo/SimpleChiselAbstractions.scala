@@ -1,6 +1,6 @@
 // See README.md for license details.
 
-package simple-chisel-demo
+package simpleChiselDemo
 
 import chisel3._
 
@@ -35,24 +35,26 @@ class FSMLogic extends Logic {
 
   io.out_value1 := io.in_value1 + 1.U
   io.out_value2 := io.in_value2 + 1.U
-  io.out_counter := Mux(io.in_counter == 3.U(2.W), 0.U, io.in_counter + 1.U)
+  io.out_counter := Mux(io.in_counter === 3.U(2.W), 0.U, io.in_counter + 1.U)
 }
 
-class FSM extends Module {
-  val io = IO(new Bundle {
+class FSMIO extends Bundle{
     val in_value1        = Input(UInt(16.W))
     val in_value2        = Input(UInt(16.W))
     val in_valid         = Input(Bool())
     val out_value1        = Output(UInt(16.W))
     val out_value2        = Output(UInt(16.W))
     val out_valid         = Output(Bool())
-  })
+}
+
+class FSM extends Module {
+  val io = IO(new FSMIO)
 
   val state = State(new FSMState)
   val logic = Logic(new FSMLogic)
-  state.in_value1 := Mux(io.in_valid, io.in_value1, logic.io.out_value1)
-  state.in_value2 := Mux(io.in_valid, io.in_value2, logic.io.out_value2)
-  state.in_counter := Mux(io.in_valid, 0.U, logic.io.out_counter)
+  state.io.in_value1 := Mux(io.in_valid, io.in_value1, logic.io.out_value1)
+  state.io.in_value2 := Mux(io.in_valid, io.in_value2, logic.io.out_value2)
+  state.io.in_counter := Mux(io.in_valid, 0.U, logic.io.out_counter)
 
   logic.io.in_value1 := state.io.out_value1
   logic.io.in_value2 := state.io.out_value2
