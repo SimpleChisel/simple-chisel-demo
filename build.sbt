@@ -1,8 +1,3 @@
-// val ivyLocal = Resolver.file("local", file("/home/chshibo" +
-//    "/.ivy2/local"))(Resolver.ivyStylePatterns)
-
-// externalResolvers += ivyLocal
-
 val commonSettings = Seq(
   scalaVersion := "2.12.4",
   crossScalaVersions := Seq("2.11.12", "2.12.4"),

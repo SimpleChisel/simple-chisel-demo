@@ -13,7 +13,8 @@ class FSMState extends State {
     val out_value2        = Output(UInt(16.W))
     val out_counter    = Output(UInt(2.W))
   })
-
+  val in = IO(new Bundle() {})
+  val out = IO(new Bundle() {})
   val value1 = RegNext(io.in_value1)
   val value2 = RegNext(io.in_value2)
   val counter = RegNext(io.in_counter)
@@ -32,7 +33,8 @@ class FSMLogic extends Logic {
     val out_value2        = Output(UInt(16.W))
     val out_counter    = Output(UInt(2.W))
   })
-
+  val in = IO(new Bundle() {})
+  val out = IO(new Bundle() {})
   io.out_value1 := io.in_value1 + 1.U
   io.out_value2 := io.in_value2 + 1.U
   io.out_counter := Mux(io.in_counter === 3.U(2.W), 0.U, io.in_counter + 1.U)
@@ -49,7 +51,8 @@ class FSMIO extends Bundle{
 
 class FSM extends Module {
   val io = IO(new FSMIO)
-
+  val in = IO(new Bundle() {})
+  val out = IO(new Bundle() {})
   val state = State(new FSMState)
   val logic = Logic(new FSMLogic)
   state.io.in_value1 := Mux(io.in_valid, io.in_value1, logic.io.out_value1)
