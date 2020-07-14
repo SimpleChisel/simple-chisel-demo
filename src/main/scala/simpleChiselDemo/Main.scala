@@ -36,4 +36,14 @@ object Main extends App {
   val verilog_BulkConnection = new FileWriter(new File(dir, s"${chirrtl_BulkConnection.main}.v"))
   verilog_BulkConnection write (new firrtl.VerilogCompiler).compileAndEmit(firrtl.CircuitState(chirrtl_BulkConnection, firrtl.ChirrtlForm)).getEmittedCircuit.value
   verilog_BulkConnection.close
+
+  /***For Interface Demo***/
+  val chirrtl_InterfaceDemo = firrtl.Parser.parse(chisel3.Driver.emit(() => new InterfaceDemo))
+  val writer_InterfaceDemo = new FileWriter(new File(dir, s"${chirrtl_InterfaceDemo.main}.fir"))
+  writer_InterfaceDemo write chirrtl_InterfaceDemo.serialize
+  writer_InterfaceDemo.close
+
+  val verilog_InterfaceDemo = new FileWriter(new File(dir, s"${chirrtl_InterfaceDemo.main}.v"))
+  verilog_InterfaceDemo write (new firrtl.VerilogCompiler).compileAndEmit(firrtl.CircuitState(chirrtl_InterfaceDemo, firrtl.ChirrtlForm)).getEmittedCircuit.value
+  verilog_InterfaceDemo.close
 }
