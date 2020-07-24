@@ -7,7 +7,7 @@ import java.io.{File, FileWriter}
 object Main extends App {
   val dir = new File(args(0)) ; dir.mkdirs
 
-  // /***For FSM generation***/
+  /***For FSM generation***/
   val chirrtl_FSM = firrtl.Parser.parse(chisel3.Driver.emit(() => new FSM))
   val writer_FSM = new FileWriter(new File(dir, s"${chirrtl_FSM.main}.fir"))
   writer_FSM write chirrtl_FSM.serialize

@@ -6,7 +6,8 @@ import chisel3.util._
 class InterfaceDemoIO extends Bundle {
     val data = Input(UInt(8.W))
 }
-class TightlyCoupledIODemo extends Module with TightlyCoupledModuleIO{
+class TightlyCoupledIODemo extends SimpleChiselModule{
+    val ctrl = IO(new TightlyCoupledIOCtrl)
     val in = IO(new InterfaceDemoIO)
     val out = IO(Flipped(new InterfaceDemoIO))
 
@@ -35,6 +36,7 @@ class InterfaceDemo extends Module{
     val tightlyCoupled = Module(new TightlyCoupledIODemo)
     tightlyCoupled.ctrl.stall := false.B
     tightlyCoupled.ctrl.clear := false.B
-
+    Console.println(tightlyCoupled.getClass.getInterfaces)
+    Console.println(tightlyCoupled.getClass.getSuperclass)
     in >>> tightlyCoupled >>> out
 }
