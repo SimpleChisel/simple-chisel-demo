@@ -2,7 +2,8 @@ package simpleChiselDemo
 
 import chisel3._
 import chisel3.util._
-
+import chisel3.simplechisel._
+import chisel3.simplechisel.util._
 class InterfaceDemoIO extends Bundle {
     val data = Input(UInt(8.W))
 }

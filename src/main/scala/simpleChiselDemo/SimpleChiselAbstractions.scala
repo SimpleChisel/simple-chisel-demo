@@ -3,7 +3,8 @@
 package simpleChiselDemo
 
 import chisel3._
-
+import chisel3.simplechisel._
+import chisel3.simplechisel.util._
 class FSMState extends State {
   val io = IO(new Bundle {
     val in_value1        = Input(UInt(16.W))

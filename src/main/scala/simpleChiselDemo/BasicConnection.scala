@@ -3,7 +3,8 @@
 package simpleChiselDemo
 
 import chisel3._
-
+import chisel3.simplechisel._
+import chisel3.simplechisel.util._
 class BasicConnectionIO extends Bundle{
   val value = UInt(16.W)
   val enable = Bool()
