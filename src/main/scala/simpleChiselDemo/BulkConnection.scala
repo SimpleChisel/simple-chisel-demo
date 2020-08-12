@@ -21,7 +21,7 @@ class BulkConnectionComponent extends SimpleChiselLogic{
 }
 
 class BulkConnection extends SimpleChiselModule{
-  val ctrl = IO(new TightlyCoupledIOCtrl)
+  val ctrl = IO(new TightlyCoupledIOCtrl(0))
   val in = IO(Input(new BulkConnectionIO))
   val out = IO(Output(new BulkConnectionIO))
 
