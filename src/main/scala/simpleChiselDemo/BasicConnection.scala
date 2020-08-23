@@ -10,9 +10,10 @@ class BasicConnectionIO extends Bundle{
   val enable = Bool()
 }
 
-class BasicConnection extends Module{
+class BasicConnection extends SimpleChiselModule{
   val in = IO(Input(new BasicConnectionIO))
   val out = IO(Output(new BasicConnectionIO))
+  val ctrl = IO(new NoIOCtrl)
   in.value >>> out.value
   in.enable >>> out.enable
 }
