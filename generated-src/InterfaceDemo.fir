@@ -25,15 +25,15 @@ circuit InterfaceDemo :
     out.data <= _T_1 @[Interface.scala 29:14]
     ctrl.stuck <= UInt<1>("h0") @[Interface.scala 30:16]
     reg _T_2 : UInt<1>[1], clock with :
-      reset => (UInt<1>("h0"), _T_2) @[SimpleChiselAbstraction.scala 230:40]
-    node _T_3 = or(ctrl.stall, ctrl.stuck) @[SimpleChiselAbstraction.scala 231:29]
-    when _T_3 : @[SimpleChiselAbstraction.scala 231:41]
-      _T_2[0] <= _T_2[0] @[SimpleChiselAbstraction.scala 232:36]
-      ctrl.valid_output <= UInt<1>("h0") @[SimpleChiselAbstraction.scala 233:32]
+      reset => (UInt<1>("h0"), _T_2) @[SimpleChiselAbstraction.scala 234:40]
+    node _T_3 = or(ctrl.stall, ctrl.stuck) @[SimpleChiselAbstraction.scala 235:29]
+    when _T_3 : @[SimpleChiselAbstraction.scala 235:41]
+      _T_2[0] <= _T_2[0] @[SimpleChiselAbstraction.scala 236:36]
+      ctrl.valid_output <= UInt<1>("h0") @[SimpleChiselAbstraction.scala 237:32]
       skip
     else :
-      _T_2[0] <= ctrl.valid_input @[SimpleChiselAbstraction.scala 235:36]
-      ctrl.valid_output <= _T_2[0] @[SimpleChiselAbstraction.scala 236:32]
+      _T_2[0] <= ctrl.valid_input @[SimpleChiselAbstraction.scala 239:36]
+      ctrl.valid_output <= _T_2[0] @[SimpleChiselAbstraction.scala 240:32]
       skip
 
   module InterfaceDemo :

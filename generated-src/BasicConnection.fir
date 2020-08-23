@@ -4,6 +4,7 @@ circuit BasicConnection :
     input reset : UInt<1>
     input in : { value : UInt<16>, enable : UInt<1>}
     output out : { value : UInt<16>, enable : UInt<1>}
+    output ctrl : { }
   
-    out.value <= in.value @[BasicConnection.scala 16:12]
-    out.enable <= in.enable @[BasicConnection.scala 17:13]
+    out.value <= in.value @[BasicConnection.scala 17:12]
+    out.enable <= in.enable @[BasicConnection.scala 18:13]
