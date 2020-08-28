@@ -7,7 +7,7 @@ import chisel3.util._
 import chisel3.simplechisel._
 import chisel3.simplechisel.util._
 class BulkConnectionIO extends Bundle{
-  val value = UInt(16.W)
+  val value = Vec(3, UInt(16.W))
   val enable = Bool()
 }
 
