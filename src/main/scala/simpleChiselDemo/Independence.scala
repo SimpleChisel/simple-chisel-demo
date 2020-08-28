@@ -117,12 +117,6 @@ class IndependenceDemo extends SimpleChiselModule{
 
     val w = Wire(new IndependenceDemoIO)
     w.data := 4.U
-    com1.ctrl.clear := false.B
-    com2.ctrl.clear := false.B
-    com3.ctrl.clear := false.B
-    com4.ctrl.clear := false.B
-    com5.ctrl.clear := false.B
-    com6.ctrl.clear := false.B
     
     com1.ctrl.in.valid := true.B
     com6.ctrl.out.ready := true.B
